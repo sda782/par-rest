@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,10 @@ namespace music_records
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "music_records", Version = "v1" });
             });
+
+            services.AddCors(options => options.AddPolicy("Allow-all",
+                builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
+            ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +51,8 @@ namespace music_records
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("Allow-all");
 
             app.UseAuthorization();
 
