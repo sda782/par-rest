@@ -16,8 +16,13 @@ namespace music_records.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        public IEnumerable<MusicRecord> Get()
+        public IEnumerable<MusicRecord> Get([FromQuery] string name)
         {
+            IEnumerable<MusicRecord> records = manager.Get_Records();
+            if (!string.IsNullOrEmpty(name))
+            {
+
+            }
             return manager.Get_Records();
         }
     }
