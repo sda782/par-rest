@@ -18,12 +18,7 @@ namespace music_records.Controllers
         [HttpGet]
         public IEnumerable<MusicRecord> Get([FromQuery] string name)
         {
-            IEnumerable<MusicRecord> records = manager.Get_Records();
-            if (!string.IsNullOrEmpty(name))
-            {
-
-            }
-            return manager.Get_Records();
+            return manager.Get_Records(name);
         }
     }
 }

@@ -17,6 +17,12 @@ namespace unit_test
             MusicRecordManager mrm = new MusicRecordManager();
             IEnumerable<MusicRecord> records = mrm.Get_Records();
             Assert.AreEqual(expectedResult, records.Count());
+
+            //filter
+            int expected2 = 1;
+            string searchname = "record 1";
+            IEnumerable<MusicRecord> records2 = mrm.Get_Records(searchname);
+            Assert.AreEqual(expected2, records2.Count());
         }
     }
 }

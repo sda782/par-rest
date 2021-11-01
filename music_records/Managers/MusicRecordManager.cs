@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using music_records.Models;
 
 namespace music_records.Managers
@@ -13,9 +14,14 @@ namespace music_records.Managers
             new MusicRecord(nextId++, "record 2", "shit label", 50, DateTime.Now, 15)
         };
 
-        public IEnumerable<MusicRecord> Get_Records()
+        public IEnumerable<MusicRecord> Get_Records(string name = "")
         {
-            return manager;
+            IEnumerable<MusicRecord> records = manager;
+            if (!string.IsNullOrEmpty(name))
+            {
+                records = records.Where(i => i.Name == name);
+            }
+            return records;
         }
     }
 }
