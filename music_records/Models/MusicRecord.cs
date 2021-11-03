@@ -15,6 +15,10 @@ namespace music_records.Models
             this.Tracks = tracks;
 
         }
+        public MusicRecord()
+        {
+
+        }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Label { get; set; }
