@@ -9,7 +9,7 @@ namespace music_records.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
-    public class MusicRecordController
+    public class MusicRecordController : ControllerBase
     {
         private readonly MusicRecordManager manager = new MusicRecordManager();
 
@@ -19,6 +19,15 @@ namespace music_records.Controllers
         public IEnumerable<MusicRecord> Get([FromQuery] string name)
         {
             return manager.Get_Records(name);
+        }
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpPost]
+        public ActionResult<MusicRecord> Add_Record([FromBody] MusicRecord record)
+        {
+            MusicRecord rec = manager.Add_Record(record);
+            if (rec == null) return NotFound("No record :(");
+            return Ok(rec);
         }
     }
 }

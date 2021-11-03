@@ -23,5 +23,12 @@ namespace music_records.Managers
             }
             return records;
         }
+
+        public MusicRecord Add_Record(MusicRecord record)
+        {
+            record.Id = nextId++;
+            manager.Add(record);
+            return record;
+        }
     }
 }
