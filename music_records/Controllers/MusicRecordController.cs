@@ -29,5 +29,14 @@ namespace music_records.Controllers
             if (rec == null) return NotFound("No record :(");
             return Ok(rec);
         }
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpDelete("{id}")]
+        public ActionResult Delete_Record(int id)
+        {
+            if (manager.Get_Record_by_id(id) == null) return NotFound("No record :(");
+            manager.Delete_Record(id);
+            return Ok();
+        }
     }
 }

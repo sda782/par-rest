@@ -30,5 +30,16 @@ namespace music_records.Managers
             manager.Add(record);
             return record;
         }
+
+        public MusicRecord Get_Record_by_id(int id)
+        {
+            if (manager.Find(i => i.Id == id)!=null) return manager.Find(i => i.Id == id);
+            return null;
+        }
+
+        public void Delete_Record(int id)
+        {
+            manager.Remove(Get_Record_by_id(id));
+        }
     }
 }
