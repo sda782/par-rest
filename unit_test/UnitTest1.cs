@@ -33,6 +33,12 @@ namespace unit_test
             mrm.Add_Record(musicRecord);
             IEnumerable<MusicRecord> records3 = mrm.Get_Records();
             Assert.AreEqual(expected3, records3.Count());
+
+            //delete method
+            int expected4 = 2;
+            mrm.Delete_Record(2);
+            records = mrm.Get_Records();
+            Assert.AreEqual(expected4, records.Count());
         }
     }
 }
